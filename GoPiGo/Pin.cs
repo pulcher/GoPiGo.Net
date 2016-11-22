@@ -2,8 +2,9 @@
 {
     public enum Pin
     {
-        LedLeft = 10,
-        LedRight = 5,
+        LedLeft = 17,
+        LedRight = 16,
         Analog1 = 15,
+        Digital1 = 10
     }
 }

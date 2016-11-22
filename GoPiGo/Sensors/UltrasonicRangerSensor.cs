@@ -23,9 +23,10 @@ namespace GoPiGo.Sensors
         {
             var buffer = new[] { CommandAddress, (byte)_pin, Constants.Unused, Constants.Unused };
             _device.DirectAccess.Write(buffer);
-            Task.Delay(8);
+            Task.Delay(85);
             _device.DirectAccess.Read(buffer);
-            return buffer[1] * 256 + buffer[2];
+            System.Diagnostics.Debug.WriteLine("\t" + buffer[1] + " " + buffer[2]);
+            return (buffer[1] * 256) + buffer[2];
         }
     }
 }
