@@ -30,25 +30,25 @@ namespace TestDriver
             _goPiGo = DeviceFactory.Build.BuildGoPiGo();
             Left = DeviceFactory.Build.BuildLed(Pin.LedLeft);
             Right = DeviceFactory.Build.BuildLed(Pin.LedRight);
-            Sensor = DeviceFactory.Build.BuildUltraSonicSensor(Pin.Analog1);
+            Sensor = DeviceFactory.Build.BuildUltraSonicSensor(Pin.Digital1);
+            System.Diagnostics.Debug.WriteLine($"Firmware: {_goPiGo.GetFirmwareVersion()}");
             _timer = ThreadPoolTimer.CreatePeriodicTimer(TurnLeftGoForward, TimeSpan.FromSeconds(5));
         }
 
         private void TurnLeftGoForward(ThreadPoolTimer timer)
         {
-            Left.ChangeState((_count % 2 == 0 ? SensorStatus.On : SensorStatus.Off));
-            Right.ChangeState((_count % 2 == 0 ? SensorStatus.Off : SensorStatus.On));
-            System.Diagnostics.Debug.WriteLine($"Voltage measured: {_goPiGo.BatteryVoltage()}V");
-            System.Diagnostics.Debug.WriteLine($"Distance measured: {Sensor.MeasureInCentimeters()}cm");
 
-            _goPiGo.MotorController().EnableServo();
-            for (int i = 0; i < 180; i++)
-            {
-                _goPiGo.MotorController().RotateServo(i);
-                System.Diagnostics.Debug.WriteLine($"Turning Servo to {i} degrees");
-            }
-            _goPiGo.MotorController().RotateServo(90);
-            _goPiGo.MotorController().DisableServo();
+
+            _goPiGo.MotorController().MoveForward();
+            //_goPiGo.MotorController().EnableServo();
+            //for (int i = 0; i < 180; i++)
+            //{
+            //    _goPiGo.MotorController().RotateServo(i);
+            //    System.Diagnostics.Debug.WriteLine($"Turning Servo to {i} degrees");
+            //    Task.Delay(5);
+            //}
+            //_goPiGo.MotorController().RotateServo(90);
+            //_goPiGo.MotorController().DisableServo();
             if (_count == 0)
             {
                 _goPiGo.MotorController().MoveForward();

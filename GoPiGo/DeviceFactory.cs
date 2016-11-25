@@ -67,7 +67,6 @@ namespace GoPiGo
             _device = Task.Run(async () =>
             {
                 var dis = await GetDeviceInfo();
-
                 // Create an I2cDevice with our selected bus controller and I2C settings
                 var device = await I2cDevice.FromIdAsync(dis[0].Id, settings);
                 return new GoPiGo(device);

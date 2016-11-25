@@ -43,64 +43,86 @@ namespace GoPiGo
         }
 
         internal I2cDevice DirectAccess { get; }
+        internal static object Locker = new object();
 
         public string GetFirmwareVersion()
         {
             var buffer = new[] { (byte)Commands.Version, Constants.Unused, Constants.Unused, Constants.Unused };
-            DirectAccess.Write(buffer);
-            DirectAccess.Read(buffer);
+            lock (Locker)
+            {
+                DirectAccess.Write(buffer);
+                Task.Delay(5);
+                DirectAccess.Read(buffer);
+            }
             return $"{buffer[0]}";
         }
 
         public byte DigitalRead(Pin pin)
         {
             var buffer = new[] { (byte)Commands.DigitalRead, (byte)pin, Constants.Unused, Constants.Unused };
-            DirectAccess.Write(buffer);
-            Task.Delay(100);//Give GoPiGo the time to Process
             var readBuffer = new byte[1];
-            DirectAccess.Read(readBuffer);
+            lock (Locker)
+            {
+                DirectAccess.Write(buffer);
+                Task.Delay(100);//Give GoPiGo the time to Process
+                DirectAccess.Read(readBuffer);
+            }
             return readBuffer[0];
         }
 
         public void DigitalWrite(Pin pin, byte value)
         {
             var buffer = new[] { (byte)Commands.DigitalWrite, (byte)pin, value, Constants.Unused };
-            DirectAccess.Write(buffer);
-            Task.Delay(5); //Wait 5 sec for the command to complete
+            lock (Locker)
+            {
+                DirectAccess.Write(buffer);
+                Task.Delay(5); //Wait 5 sec for the command to complete
+            }
         }
 
         public int AnalogRead(Pin pin)
         {
             var buffer = new[]
             {(byte) Commands.DigitalRead, (byte) Commands.AnalogRead, (byte) pin, Constants.Unused, Constants.Unused};
-            DirectAccess.Write(buffer);
-            Task.Delay(7); //Wait a few ms to process
-            DirectAccess.Read(buffer);
+            lock (Locker)
+            {
+                DirectAccess.Write(buffer);
+                Task.Delay(7); //Wait a few ms to process
+                DirectAccess.Read(buffer);
+            }
             return buffer[1] * 256 + buffer[2];
         }
 
         public void AnalogWrite(Pin pin, byte value)
         {
             var buffer = new[] { (byte)Commands.AnalogWrite, (byte)pin, value, Constants.Unused };
-            DirectAccess.Write(buffer);
-            Task.Delay(5); //Wait a few ms to process
+            lock (Locker)
+            {
+                DirectAccess.Write(buffer);
+                Task.Delay(5); //Wait a few ms to process
+            }
         }
 
         public void PinMode(Pin pin, PinMode mode)
         {
             var buffer = new[] { (byte)Commands.PinMode, (byte)pin, (byte)mode, Constants.Unused };
-            DirectAccess.Write(buffer);
+            lock (Locker)
+            {
+                DirectAccess.Write(buffer);
+                Task.Delay(5);
+            }
         }
 
 
         public decimal BatteryVoltage()
         {
             var buffer = new[] { (byte)Commands.BatteryVoltage, Constants.Unused, Constants.Unused, Constants.Unused };
-
-            DirectAccess.Write(buffer);
-            Task.Delay(1); //Wait a few ms to process
-            DirectAccess.Read(buffer);
-
+            lock (Locker)
+            {
+                DirectAccess.Write(buffer);
+                Task.Delay(1); //Wait a few ms to process
+                DirectAccess.Read(buffer);
+            }
             decimal voltage = buffer[1] * 256 + buffer[2];
             voltage = (5 * voltage / 1024) / (decimal).4;
 
@@ -110,8 +132,11 @@ namespace GoPiGo
         public IGoPiGo RunCommand(Commands command, byte firstParam = Constants.Unused, byte secondParam = Constants.Unused, byte thirdParam = Constants.Unused)
         {
             var buffer = new[] { (byte)command, firstParam, secondParam, thirdParam };
-            DirectAccess.Write(buffer);
-            Task.Delay(5);
+            lock (Locker)
+            {
+                DirectAccess.Write(buffer);
+                Task.Delay(5);
+            }
             return this;
         }
     }
