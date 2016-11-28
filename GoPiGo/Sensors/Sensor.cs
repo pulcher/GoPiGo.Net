@@ -10,13 +10,13 @@ namespace GoPiGo.Sensors
     {
         protected readonly IGoPiGo Device;
         protected readonly Pin Pin;
-
+        protected readonly PinMode PinMode = PinMode.Output;
         internal Sensor(IGoPiGo device, Pin pin, PinMode pinMode)
         {
             if (device == null) throw new ArgumentNullException(nameof(device));
-            device.PinMode(Pin, pinMode);
             Device = device;
             Pin = pin;
+            PinMode = pinMode;
         }
 
         internal Sensor(IGoPiGo device, Pin pin)
@@ -30,6 +30,7 @@ namespace GoPiGo.Sensors
 
         public TSensorType ChangeState(SensorStatus newState)
         {
+            Device.PinMode(Pin, PinMode);
             Device.DigitalWrite(Pin, (byte)newState);
             return this as TSensorType;
         }

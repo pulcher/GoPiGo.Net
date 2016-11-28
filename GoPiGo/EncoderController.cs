@@ -1,4 +1,6 @@
-﻿namespace GoPiGo
+﻿using System;
+
+namespace GoPiGo
 {
     public interface IEncoderController
     {
@@ -27,12 +29,18 @@
         public int ReadEncoder(Motor motor)
         {
             var buffer = new[] { (byte)Commands.ReadEncoder, (byte)motor, Constants.Unused, Constants.Unused };
-            _goPiGo.DirectAccess.Write(buffer);
+            _goPiGo.WriteToI2C(buffer);
 
-            _goPiGo.DirectAccess.Read(buffer);
-
-            int encoder = buffer[1] * 256 + buffer[2];
-            return encoder;
+            try
+            {
+                var b1 = _goPiGo.ReadByte();
+                var b2 = _goPiGo.ReadByte();
+                return b1 * 256 + b2;
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
         }
 
         public IEncoderController EnableEncoders()

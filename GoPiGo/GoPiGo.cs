@@ -4,7 +4,7 @@ using Windows.Devices.I2c;
 
 namespace GoPiGo
 {
-    public interface IGoPiGo
+    public interface IGoPiGo : IDisposable
     {
         string GetFirmwareVersion();
         byte DigitalRead(Pin pin);
@@ -21,17 +21,37 @@ namespace GoPiGo
 
     public class GoPiGo : IGoPiGo
     {
+        const int GoPiGoAddress = 0x08;
         private readonly IMotorController _motorController;
         private readonly IEncoderController _encoderController;
-
+        internal I2cDevice Device { get; }
         internal GoPiGo(I2cDevice device)
         {
-            if (device == null) throw new ArgumentNullException(nameof(device));
-            DirectAccess = device;
+            Device = device;
             _motorController = new MotorController(this);
             _encoderController = new EncoderController(this);
         }
 
+        internal bool WriteToI2C(byte[] block)
+        {
+            try
+            {
+                Device.Write(block);
+                Task.Delay(5);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        internal byte ReadByte()
+        {
+            byte[] bytes = new byte[1];
+            Device.Read(bytes);
+            return bytes[0];
+        }
         public IMotorController MotorController()
         {
             return _motorController;
@@ -42,102 +62,98 @@ namespace GoPiGo
             return _encoderController;
         }
 
-        internal I2cDevice DirectAccess { get; }
-        internal static object Locker = new object();
 
         public string GetFirmwareVersion()
         {
             var buffer = new[] { (byte)Commands.Version, Constants.Unused, Constants.Unused, Constants.Unused };
-            lock (Locker)
-            {
-                DirectAccess.Write(buffer);
-                Task.Delay(5);
-                DirectAccess.Read(buffer);
-            }
-            return $"{buffer[0]}";
+            WriteToI2C(buffer);
+            var firmware = ReadByte();
+            return $"{firmware}";
         }
 
         public byte DigitalRead(Pin pin)
         {
             var buffer = new[] { (byte)Commands.DigitalRead, (byte)pin, Constants.Unused, Constants.Unused };
-            var readBuffer = new byte[1];
-            lock (Locker)
-            {
-                DirectAccess.Write(buffer);
-                Task.Delay(100);//Give GoPiGo the time to Process
-                DirectAccess.Read(readBuffer);
-            }
-            return readBuffer[0];
+            WriteToI2C(buffer);
+            Task.Delay(100);
+            var data = ReadByte();
+            return data;
         }
 
         public void DigitalWrite(Pin pin, byte value)
         {
             var buffer = new[] { (byte)Commands.DigitalWrite, (byte)pin, value, Constants.Unused };
-            lock (Locker)
-            {
-                DirectAccess.Write(buffer);
-                Task.Delay(5); //Wait 5 sec for the command to complete
-            }
+            WriteToI2C(buffer);
+
         }
 
         public int AnalogRead(Pin pin)
         {
             var buffer = new[]
-            {(byte) Commands.DigitalRead, (byte) Commands.AnalogRead, (byte) pin, Constants.Unused, Constants.Unused};
-            lock (Locker)
+            {(byte) Commands.AnalogRead, (byte) pin, Constants.Unused, Constants.Unused};
+            WriteToI2C(buffer);
+            Task.Delay(7);
+            try
             {
-                DirectAccess.Write(buffer);
-                Task.Delay(7); //Wait a few ms to process
-                DirectAccess.Read(buffer);
+                var b1 = ReadByte();
+                var b2 = ReadByte();
+                return b1 * 256 + b2;
             }
-            return buffer[1] * 256 + buffer[2];
+            catch (Exception)
+            {
+                return -1;
+            }
+
         }
 
         public void AnalogWrite(Pin pin, byte value)
         {
             var buffer = new[] { (byte)Commands.AnalogWrite, (byte)pin, value, Constants.Unused };
-            lock (Locker)
-            {
-                DirectAccess.Write(buffer);
-                Task.Delay(5); //Wait a few ms to process
-            }
+            WriteToI2C(buffer);
         }
 
         public void PinMode(Pin pin, PinMode mode)
         {
             var buffer = new[] { (byte)Commands.PinMode, (byte)pin, (byte)mode, Constants.Unused };
-            lock (Locker)
-            {
-                DirectAccess.Write(buffer);
-                Task.Delay(5);
-            }
+            WriteToI2C(buffer);
         }
 
 
         public decimal BatteryVoltage()
         {
             var buffer = new[] { (byte)Commands.BatteryVoltage, Constants.Unused, Constants.Unused, Constants.Unused };
-            lock (Locker)
+            WriteToI2C(buffer);
+             //Wait a few ms to process
+            Task.Delay(1);
+            try
             {
-                DirectAccess.Write(buffer);
-                Task.Delay(1); //Wait a few ms to process
-                DirectAccess.Read(buffer);
+                var b1 = ReadByte();
+                var b2 = ReadByte();
+                decimal v = b1 * 256 + b2;
+                v = (5 * v / 1024) / (decimal)0.4;
+                return Math.Round(v, 2);
             }
-            decimal voltage = buffer[1] * 256 + buffer[2];
-            voltage = (5 * voltage / 1024) / (decimal).4;
-
-            return Math.Round(voltage, 2);
+            catch (Exception)
+            {
+                return -1;
+            }
         }
 
         public IGoPiGo RunCommand(Commands command, byte firstParam = Constants.Unused, byte secondParam = Constants.Unused, byte thirdParam = Constants.Unused)
         {
             var buffer = new[] { (byte)command, firstParam, secondParam, thirdParam };
-            lock (Locker)
-            {
-                DirectAccess.Write(buffer);
-                Task.Delay(5);
-            }
+            WriteToI2C(buffer);
+            Task.Delay(5);
             return this;
+        }
+
+        public void Dispose()
+        {
+            if (this.Device != null)
+            {
+                this.MotorController().Stop();
+                this.Device.Dispose();
+            }
         }
     }
 }

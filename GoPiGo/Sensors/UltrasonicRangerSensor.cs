@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace GoPiGo.Sensors
 {
@@ -22,11 +23,20 @@ namespace GoPiGo.Sensors
         public int MeasureInCentimeters()
         {
             var buffer = new[] { CommandAddress, (byte)_pin, Constants.Unused, Constants.Unused };
-            _device.DirectAccess.Write(buffer);
-            Task.Delay(85);
-            _device.DirectAccess.Read(buffer);
-            System.Diagnostics.Debug.WriteLine("\t" + buffer[1] + " " + buffer[2]);
-            return (buffer[1] * 256) + buffer[2];
+            _device.WriteToI2C(buffer);
+            Task.Delay(100);
+            try
+            {
+                var b1 = _device.ReadByte();
+                Task.Delay(5);
+                var b2 = _device.ReadByte();
+                return b1 * 256 + b2;
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+
         }
     }
 }
