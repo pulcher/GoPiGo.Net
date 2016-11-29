@@ -4,8 +4,10 @@ Initial the GoPiGo library for C# doesn't work correctly (Due to unknown reasons
 
 It is now a small Challange to make this work, so the robot can race a parcour :)!
 
-#Issues encountered
-After updating the WinIOT OS, this doesn't work anymore. I am looking into why.
+Also take a look at the mono implementation, to run it on the Linux Distro's at: https://github.com/muziekklas/GoPiGo.mono
+That one does work like a charm :)
+
+I kept the same methods over there as the original library provided by Dexter industries
 
 # To do list
 Task                                   | Status
