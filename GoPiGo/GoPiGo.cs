@@ -37,7 +37,7 @@ namespace GoPiGo
             try
             {
                 Device.Write(block);
-                Task.Delay(5);
+                Task.Delay(5).Wait();
                 return true;
             }
             catch (Exception e)
@@ -75,7 +75,7 @@ namespace GoPiGo
         {
             var buffer = new[] { (byte)Commands.DigitalRead, (byte)pin, Constants.Unused, Constants.Unused };
             WriteToI2C(buffer);
-            Task.Delay(100);
+            Task.Delay(100).Wait();
             var data = ReadByte();
             return data;
         }
@@ -92,10 +92,11 @@ namespace GoPiGo
             var buffer = new[]
             {(byte) Commands.AnalogRead, (byte) pin, Constants.Unused, Constants.Unused};
             WriteToI2C(buffer);
-            Task.Delay(7);
+            Task.Delay(7).Wait();
             try
             {
                 var b1 = ReadByte();
+                Task.Delay(5).Wait();
                 var b2 = ReadByte();
                 return b1 * 256 + b2;
             }
@@ -124,10 +125,11 @@ namespace GoPiGo
             var buffer = new[] { (byte)Commands.BatteryVoltage, Constants.Unused, Constants.Unused, Constants.Unused };
             WriteToI2C(buffer);
              //Wait a few ms to process
-            Task.Delay(1);
+            Task.Delay(1).Wait();
             try
             {
                 var b1 = ReadByte();
+                Task.Delay(5).Wait();
                 var b2 = ReadByte();
                 decimal v = b1 * 256 + b2;
                 v = (5 * v / 1024) / (decimal)0.4;
@@ -143,7 +145,7 @@ namespace GoPiGo
         {
             var buffer = new[] { (byte)command, firstParam, secondParam, thirdParam };
             WriteToI2C(buffer);
-            Task.Delay(5);
+            Task.Delay(5).Wait();
             return this;
         }
 

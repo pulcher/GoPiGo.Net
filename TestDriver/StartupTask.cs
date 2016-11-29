@@ -43,11 +43,10 @@ namespace TestDriver
                         System.Diagnostics.Debug.WriteLine("battery: " + gopigo.BatteryVoltage());
                         gopigo.MotorController().Stop();
                         gopigo.MotorController().MoveForward();
-                        await Task.Delay(50);
-                        var d = ultrasonic.MeasureInCentimeters();
+                        var d = 31;
                         while (d > 30)
                         {
-                            await Task.Delay(500);
+                            await Task.Delay(50);
                             d = ultrasonic.MeasureInCentimeters();
                             System.Diagnostics.Debug.WriteLine($"Driving forward with {d} cm of space");
 
@@ -62,7 +61,7 @@ namespace TestDriver
                             await Task.Delay(250);
                             gopigo.MotorController().Stop();
                             led1.ChangeState(GoPiGo.Sensors.SensorStatus.Off);
-                            await Task.Delay(500);
+                            await Task.Delay(50);
                             d = ultrasonic.MeasureInCentimeters();
                             await Task.Delay(10);
                         }

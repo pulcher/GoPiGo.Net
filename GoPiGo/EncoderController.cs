@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace GoPiGo
 {
@@ -34,6 +35,7 @@ namespace GoPiGo
             try
             {
                 var b1 = _goPiGo.ReadByte();
+                Task.Delay(5).Wait();
                 var b2 = _goPiGo.ReadByte();
                 return b1 * 256 + b2;
             }

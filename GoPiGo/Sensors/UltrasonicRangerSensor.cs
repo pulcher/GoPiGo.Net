@@ -24,11 +24,11 @@ namespace GoPiGo.Sensors
         {
             var buffer = new[] { CommandAddress, (byte)_pin, Constants.Unused, Constants.Unused };
             _device.WriteToI2C(buffer);
-            Task.Delay(100);
+            Task.Delay(100).Wait();
             try
             {
                 var b1 = _device.ReadByte();
-                Task.Delay(5);
+                Task.Delay(5).Wait();
                 var b2 = _device.ReadByte();
                 return b1 * 256 + b2;
             }
