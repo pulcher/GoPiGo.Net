@@ -2,24 +2,100 @@
 
 namespace GoPiGo
 {
+    /// <summary>
+    /// Interface to access the motor controls
+    /// </summary>
     public interface IMotorController
     {
+        /// <summary>
+        /// Moves the robot forward
+        /// </summary>
+        /// <returns>This</returns>
         IMotorController MoveForward();
+        /// <summary>
+        /// Moves the robot forward without pid control (Proportional integral derivate controller)
+        /// </summary>
+        /// <returns>This</returns>
         IMotorController MoveForwardNoPid();
+        /// <summary>
+        /// Moves the robot backwards
+        /// </summary>
+        /// <returns>This</returns>
         IMotorController MoveBackward();
+        /// <summary>
+        /// Moves the robot backwards without pid control (Proportional integral derivate controller)
+        /// </summary>
+        /// <returns>This</returns>
         IMotorController MoveBackwardNoPid();
+        /// <summary>
+        /// Turns the robot left, but keeps its momentum
+        /// </summary>
+        /// <returns>This</returns>
         IMotorController MoveLeft();
+        /// <summary>
+        /// Rotates the robot left on the spot
+        /// </summary>
+        /// <returns>This</returns>
         IMotorController RotateLeft();
+        /// <summary>
+        /// Turns the robot right but keeps it momentum
+        /// </summary>
+        /// <returns>This</returns>
         IMotorController MoveRight();
+        /// <summary>
+        /// Rotates the robot left on the spot
+        /// </summary>
+        /// <returns>This</returns>
         IMotorController RotateRight();
+        /// <summary>
+        /// Stops the robot
+        /// </summary>
+        /// <returns>This</returns>
         IMotorController Stop();
+        /// <summary>
+        /// Increments the speed with 10 units
+        /// </summary>
+        /// <returns>This</returns>
         IMotorController IncreaseSpeedBy10();
+        /// <summary>
+        /// Decrements the speed with 10 units
+        /// </summary>
+        /// <returns>This</returns>
         IMotorController DecreaseSpeedBy10();
+       /// <summary>
+       /// Manual controls motor one
+       /// </summary>
+       /// <param name="direction">The direction</param>
+       /// <param name="speed">The speed</param>
+       /// <returns>This</returns>
         IMotorController ControlMotorOne(int direction, int speed);
+        /// <summary>
+        /// Rotates the servo to a certain degree
+        /// </summary>
+        /// <param name="degrees">Degrees to turn</param>
+        /// <returns>This</returns>
         IMotorController RotateServo(int degrees);
+        /// <summary>
+        /// Enables the servo to rotate
+        /// </summary>
+        /// <returns>This</returns>
         IMotorController EnableServo();
+        /// <summary>
+        /// Disables the servo to rotate
+        /// </summary>
+        /// <returns>This</returns>
         IMotorController DisableServo();
+        /// <summary>
+        /// Sets the left motor speed 
+        /// </summary>
+        /// <param name="speed">The speed to set</param>
+        /// <returns></returns>
         IMotorController SetLeftMotorSpeed(int speed);
+        /// <summary>
+        /// Sets the right motor speed
+        /// </summary>
+        /// <param name="speed">The speed to set</param>
+        /// <returns>This</returns>
         IMotorController SetRightMotorSpeed(int speed);
     }
 

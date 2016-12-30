@@ -4,18 +4,65 @@ using Windows.Devices.I2c;
 
 namespace GoPiGo
 {
+    /// <summary>
+    /// Interface to access the GoPiGo
+    /// </summary>
     public interface IGoPiGo : IDisposable
     {
+        /// <summary>
+        /// Gets the Firmwareversion of the gopigo
+        /// </summary>
+        /// <returns></returns>
         string GetFirmwareVersion();
+        /// <summary>
+        /// Digital reads a certain pin
+        /// </summary>
+        /// <param name="pin">The pin to read from </param>
+        /// <returns>the set of bytes</returns>
         byte DigitalRead(Pin pin);
+        /// <summary>
+        /// Digital writes to a certain pin
+        /// </summary>
+        /// <param name="pin">The pin to write to</param>
+        /// <param name="value">The value to write to</param>
         void DigitalWrite(Pin pin, byte value);
+        /// <summary>
+        /// Analog reads a certain pin
+        /// </summary>
+        /// <param name="pin">The pin to read</param>
+        /// <returns>The value read from the pin</returns>
         int AnalogRead(Pin pin);
+        /// <summary>
+        /// Analog writes to a certain pin
+        /// </summary>
+        /// <param name="pin">The pin to write</param>
+        /// <param name="value">The value to write</param>
         void AnalogWrite(Pin pin, byte value);
         void PinMode(Pin pin, PinMode mode);
+        /// <summary>
+        /// Gets the battery voltage
+        /// </summary>
+        /// <returns>The battery voltage</returns>
         decimal BatteryVoltage();
+        /// <summary>
+        /// Gets the motor controller
+        /// </summary>
+        /// <returns>The motor controller</returns>
         IMotorController MotorController();
-        //Currently not functioning
-        //IEncoderController EncoderController();
+        /// <summary>
+        /// THIS IS NOT FULLY FUNCTIONING!
+        /// Gets the encoder motor controller. 
+        /// </summary>
+        /// <returns>The motor encoder controller</returns>
+        IEncoderController EncoderController();
+        /// <summary>
+        /// Runs a manual command
+        /// </summary>
+        /// <param name="command">The command to execute</param>
+        /// <param name="firstParam">The first parameter</param>
+        /// <param name="secondParam">The Second parameter</param>
+        /// <param name="thirdParam">The Third Parameter</param>
+        /// <returns>the gopigo</returns>
         IGoPiGo RunCommand(Commands command, byte firstParam = Constants.Unused, byte secondParam = Constants.Unused, byte thirdParam = Constants.Unused);
     }
 

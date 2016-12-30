@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace GoPiGo.Sensors
 {
+    /// <summary>
+    /// Abstraction for a sensor and led light
+    /// </summary>
+    /// <typeparam name="TSensorType">The class of the sensor</typeparam>
     public abstract class Sensor<TSensorType> where TSensorType : class
     {
         protected readonly IGoPiGo Device;
