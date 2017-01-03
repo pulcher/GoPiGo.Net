@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoPiGo", "GoPiGo\GoPiGo.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDriver", "TestDriver\TestDriver.csproj", "{A5D448BE-11B3-4278-A7A6-29FB5C1C2977}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{0D802B07-3951-4ED9-94CF-B761D4D401C4}"
+	ProjectSection(SolutionItems) = preProject
+		Wiki\Assembly.md = Wiki\Assembly.md
+		Wiki\Timing.md = Wiki\Timing.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
