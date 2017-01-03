@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{0D802B07-3951-4ED9-94CF-B761D4D401C4}"
 	ProjectSection(SolutionItems) = preProject
 		Wiki\Assembly.md = Wiki\Assembly.md
+		Wiki\Index.md = Wiki\Index.md
 		Wiki\Timing.md = Wiki\Timing.md
 	EndProjectSection
 EndProject
