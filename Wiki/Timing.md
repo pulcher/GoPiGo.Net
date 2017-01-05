@@ -25,3 +25,18 @@ To wait in UWP, you can use the following snippet:
 	Task.Delay(100).Wait();
 	var data = ReadByte();
 ```
+
+## Using GoPiGo.Net Library
+Most methods handle the timing between actions, like the example above, but not before!
+Let's use the following example:
+```Cs
+	gopigo.MotorController().MoveForward();
+	gopigo.MotorController().Stop();
+```
+When the Stop method is called, there is no delay between the last I2C Command and the next one. So it is important to add a delay between both method calls:
+```Cs
+	gopigo.MotorController().MoveForward();
+	await Task.Delay(100);
+	gopigo.MotorController().Stop();
+```
+In the example here, we've used 100ms. It is *adviced* to use *at least* 7ms between method calls.
