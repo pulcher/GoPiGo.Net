@@ -6,4 +6,9 @@ All timings between I2C read/writes are ported from the python library.
 
 To view various documentation about the library use the Index table below:
 
-- 
+##Assembly And Setup
+- [Assemby of the GoPiGo](https://github.com/tobania/GoPiGo.Net/blob/master/Wiki/Assembly.md)
+- [GoPiGo & Visual Studio 2015](https://github.com/tobania/GoPiGo.Net/blob/master/Wiki/VisualStudioSetup.md)
+
+##Code related
+- [Timing](https://github.com/tobania/GoPiGo.Net/blob/master/Wiki/Timing.md)

@@ -12,6 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Wiki\Assembly.md = Wiki\Assembly.md
 		Wiki\Index.md = Wiki\Index.md
 		Wiki\Timing.md = Wiki\Timing.md
+		Wiki\VisualStudioSetup.md = Wiki\VisualStudioSetup.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00 Library", "00 Library", "{D8EFB199-553B-41A5-A0B6-E7BEBED0960B}"
