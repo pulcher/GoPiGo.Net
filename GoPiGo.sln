@@ -12,6 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Wiki\Assembly.md = Wiki\Assembly.md
 		Wiki\Index.md = Wiki\Index.md
 		Wiki\Timing.md = Wiki\Timing.md
+		Wiki\UltrasonicSensor.md = Wiki\UltrasonicSensor.md
 		Wiki\VisualStudioSetup.md = Wiki\VisualStudioSetup.md
 	EndProjectSection
 EndProject
