@@ -3,8 +3,16 @@ using System.Threading.Tasks;
 
 namespace GoPiGo.Sensors
 {
+    /// <summary>
+    /// Interface to access the Ultrasonic sensor
+    /// </summary>
     public interface IUltrasonicRangerSensor
     {
+        /// <summary>
+        /// Gets the distance in CM to a next object.
+        /// Beware! This sensor is only acurate for smaller distances. The more distance, the more issues!
+        /// </summary>
+        /// <returns>Distance in CM or -1 if something faulty occured</returns>
         int MeasureInCentimeters();
     }
 
@@ -19,7 +27,11 @@ namespace GoPiGo.Sensors
             _device = device;
             _pin = pin;
         }
-
+        /// <summary>
+        /// Gets the distance in CM to a next object.
+        /// Beware! This sensor is only acurate for smaller distances. The more distance, the more issues!
+        /// </summary>
+        /// <returns>Distance in CM or -1 if something faulty occured</returns>
         public int MeasureInCentimeters()
         {
             var buffer = new[] { CommandAddress, (byte)_pin, Constants.Unused, Constants.Unused };

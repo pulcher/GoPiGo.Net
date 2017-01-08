@@ -7,6 +7,28 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoPiGo", "GoPiGo\GoPiGo.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDriver", "TestDriver\TestDriver.csproj", "{A5D448BE-11B3-4278-A7A6-29FB5C1C2977}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{0D802B07-3951-4ED9-94CF-B761D4D401C4}"
+	ProjectSection(SolutionItems) = preProject
+		Wiki\Assembly.md = Wiki\Assembly.md
+		Wiki\Index.md = Wiki\Index.md
+		Wiki\Timing.md = Wiki\Timing.md
+		Wiki\UltrasonicSensor.md = Wiki\UltrasonicSensor.md
+		Wiki\VisualStudioSetup.md = Wiki\VisualStudioSetup.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00 Library", "00 Library", "{D8EFB199-553B-41A5-A0B6-E7BEBED0960B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 Drivers", "01 Drivers", "{12C95798-0247-401E-A64E-22227282FB8D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 Testing", "02 Testing", "{5B48D6D5-C3EF-4294-9ED5-FFE541B1CFC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tobania.HardwareTester", "Tobania.HardwareTester\Tobania.HardwareTester.csproj", "{2DE4EA10-8D80-4B79-BA6A-45AB1E0A450B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2F2A42C9-71FB-4922-9461-4CD90F7A8B3C}"
+	ProjectSection(SolutionItems) = preProject
+		README.txt = README.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,8 +77,33 @@ Global
 		{A5D448BE-11B3-4278-A7A6-29FB5C1C2977}.Release|x86.ActiveCfg = Release|x86
 		{A5D448BE-11B3-4278-A7A6-29FB5C1C2977}.Release|x86.Build.0 = Release|x86
 		{A5D448BE-11B3-4278-A7A6-29FB5C1C2977}.Release|x86.Deploy.0 = Release|x86
+		{2DE4EA10-8D80-4B79-BA6A-45AB1E0A450B}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{2DE4EA10-8D80-4B79-BA6A-45AB1E0A450B}.Debug|ARM.ActiveCfg = Debug|ARM
+		{2DE4EA10-8D80-4B79-BA6A-45AB1E0A450B}.Debug|ARM.Build.0 = Debug|ARM
+		{2DE4EA10-8D80-4B79-BA6A-45AB1E0A450B}.Debug|ARM.Deploy.0 = Debug|ARM
+		{2DE4EA10-8D80-4B79-BA6A-45AB1E0A450B}.Debug|x64.ActiveCfg = Debug|x64
+		{2DE4EA10-8D80-4B79-BA6A-45AB1E0A450B}.Debug|x64.Build.0 = Debug|x64
+		{2DE4EA10-8D80-4B79-BA6A-45AB1E0A450B}.Debug|x64.Deploy.0 = Debug|x64
+		{2DE4EA10-8D80-4B79-BA6A-45AB1E0A450B}.Debug|x86.ActiveCfg = Debug|x86
+		{2DE4EA10-8D80-4B79-BA6A-45AB1E0A450B}.Debug|x86.Build.0 = Debug|x86
+		{2DE4EA10-8D80-4B79-BA6A-45AB1E0A450B}.Debug|x86.Deploy.0 = Debug|x86
+		{2DE4EA10-8D80-4B79-BA6A-45AB1E0A450B}.Release|Any CPU.ActiveCfg = Release|x86
+		{2DE4EA10-8D80-4B79-BA6A-45AB1E0A450B}.Release|ARM.ActiveCfg = Release|ARM
+		{2DE4EA10-8D80-4B79-BA6A-45AB1E0A450B}.Release|ARM.Build.0 = Release|ARM
+		{2DE4EA10-8D80-4B79-BA6A-45AB1E0A450B}.Release|ARM.Deploy.0 = Release|ARM
+		{2DE4EA10-8D80-4B79-BA6A-45AB1E0A450B}.Release|x64.ActiveCfg = Release|x64
+		{2DE4EA10-8D80-4B79-BA6A-45AB1E0A450B}.Release|x64.Build.0 = Release|x64
+		{2DE4EA10-8D80-4B79-BA6A-45AB1E0A450B}.Release|x64.Deploy.0 = Release|x64
+		{2DE4EA10-8D80-4B79-BA6A-45AB1E0A450B}.Release|x86.ActiveCfg = Release|x86
+		{2DE4EA10-8D80-4B79-BA6A-45AB1E0A450B}.Release|x86.Build.0 = Release|x86
+		{2DE4EA10-8D80-4B79-BA6A-45AB1E0A450B}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F68E38F7-F997-4953-B37A-2CAA3D7D3383} = {D8EFB199-553B-41A5-A0B6-E7BEBED0960B}
+		{A5D448BE-11B3-4278-A7A6-29FB5C1C2977} = {12C95798-0247-401E-A64E-22227282FB8D}
+		{2DE4EA10-8D80-4B79-BA6A-45AB1E0A450B} = {5B48D6D5-C3EF-4294-9ED5-FFE541B1CFC4}
 	EndGlobalSection
 EndGlobal

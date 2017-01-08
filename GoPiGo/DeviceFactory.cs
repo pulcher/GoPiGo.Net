@@ -6,16 +6,44 @@ using GoPiGo.Sensors;
 
 namespace GoPiGo
 {
+
+    /// <summary>
+    /// Device factory to control the GoPiGo
+    /// </summary>
     public static class DeviceFactory
     {
+        /// <summary>
+        /// Gets the DeviceBuilder for the GoPiGo
+        /// </summary>
         public static IBuildGoPiGoDevices Build = new DeviceBuilder();
     }
-
+    /// <summary>
+    /// The interface to access the device builder
+    /// </summary>
     public interface IBuildGoPiGoDevices
     {
+        /// <summary>
+        /// Gets the GoPiGo with the default address 0x08
+        /// </summary>
+        /// <returns>The GoPiGo created at that address</returns>
         IGoPiGo BuildGoPiGo();
+        /// <summary>
+        /// Gets the GoPiGo with a manual address
+        /// </summary>
+        /// <param name="address">A manual address which can be specified. GoPiGo listens on 0x08</param>
+        /// <returns>The GoPiGo created at that address</returns>
         IGoPiGo BuildGoPiGo(int address);
+        /// <summary>
+        /// Gets a Led light 
+        /// </summary>
+        /// <param name="pin">the pin of a certain led light</param>
+        /// <returns>The led light </returns>
         ILed BuildLed(Pin pin);
+        /// <summary>
+        /// Gets the ultrasonic sensor
+        /// </summary>
+        /// <param name="pin">The pin of the ultrasonic sensor</param>
+        /// <returns>the ultrasonic sensor</returns>
         IUltrasonicRangerSensor BuildUltraSonicSensor(Pin pin);
     }
 
