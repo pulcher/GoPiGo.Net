@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GoPiGo.DeviceFactory">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DeviceFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoPiGo.DeviceBuilder" BaseTypeListCollapsed="true">
+    <Position X="3" Y="5.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAggAAUAAAAAAgCAAAAAAAAAAAkA=</HashCode>
+      <FileName>DeviceFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GoPiGo.MotorController">
+    <Position X="14" Y="5.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAIAkAARAAAIAQgBAAAAEAAgAIYESAAAAAIAA=</HashCode>
+      <FileName>MotorController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GoPiGo.GoPiGo">
+    <Position X="8.75" Y="5.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AACgAAAAUCAAggACAAAQAAgAAAAAAECAACQgAAAAAEA=</HashCode>
+      <FileName>GoPiGo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="GoPiGo.IBuildGoPiGoDevices">
+    <Position X="3" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>DeviceFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="GoPiGo.IMotorController">
+    <Position X="14" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAIAkAAQAAAIAQABAAAAEAAgAIYESAAAAAIAA=</HashCode>
+      <FileName>MotorController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="GoPiGo.IGoPiGo">
+    <Position X="8.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAEAAAAAAAAAAQAAgAAAAAAACAACQgAAAAAEA=</HashCode>
+      <FileName>GoPiGo.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
