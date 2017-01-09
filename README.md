@@ -1,8 +1,8 @@
 #GoPiGo.Net Library
-The GoPiGo.Net library is a fork from the official .net library from GoPiGo, but updated to the latest and greatest version of the GoPiGo board (rev 2).
-All timings between I2C read/writes are ported from the python library.
+The GoPiGo.Net library is a fork of the official GoPiGo .NET library that has been updated to the latest and greatest version of the GoPiGo board (rev 2).
+All of the timings between I2C reads/writes have been copied from the Python library.
 
-To view various documentation about the library use the Index table below:
+You can find additional information about this library behind the following links.
 
 ##Setup
 - [Assemby of the GoPiGo](https://github.com/tobania/GoPiGo.Net/blob/master/Wiki/Assembly.md)

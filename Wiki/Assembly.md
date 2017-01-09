@@ -1,35 +1,37 @@
 # Assembling GoPiGo Robot
 
-Assembling the Robot contains out of two parts
-- Hardware
-- Software
+Assembling the robot consists of:
+1. Assembling the GoPiGo **hardware** parts and the Raspberry Pi.
+2. Installing **software** on a SD card that can be inserted into the Raspberry Pi.
 
 ## Hardware
 
-Follow the official Steps provided by Dexter industries:
+To assemble the GoPiGo robot and the Raspberry Pi, follow the official steps provided by Dexter industries:
 https://www.dexterindustries.com/GoPiGo/getting-started-with-your-gopigo-raspberry-pi-robot-kit-2/1-assemble-the-gopigo-2/assemble-gopigo-raspberry-pi-robot/
 
 ## Software
-Concerning Software running on the GoPiGo, we divert away from the official tutorial:
-### Windows 10 IOT core
-	We need to install Windows 10 IOT on the SD card:
-	
-	1) Insert the SD card into the PC and open your Windows IOT Dashboard
-	2) Goto the Set up a new device
-		- Select raspberry pi 2 & 3 for the device type
-		- Select the latest verion
-		- Select the SD card 
-		- Give it the name (example: your awesome team name)
-		- Use a password which you don't forget the next 24h
-	3) Accept the terms and download
-	4) Wait till it completes the installation and insert it into the assembled Bot.
-	5) Connect the raspberry pi via the Ethernet cable provided in the kit with your PC. 
-	6) Power the raspberry pi via the USB board and wait a few moments
-	If you see something on the HDMI output, you are fine to continue!
-	Else, unplug the power and plug it in again. Sometimes Windows takes some time...
-	
-	7) Open the browser and navigate to http://[YOURROBOTNAME]:8080. Use administrator followed by the password you've entered in step 2.
-	8) //TODO Debug pin
-	9) //TODO Access the Wifi credentials
 
-Now your bot is connected to the wifi, Try to deploy the test app and watch what the robot does.
+We provide custom steps for installing software. The following instructions do not reflect the official instructions.
+
+### Windows 10 IoT Core
+
+The following steps will guide you through installing Windows 10 IoT Core on your SD card.
+
+1. Insert the SD card into a PC and open the *Windows 10 IoT Core Dashboard* app.
+2. Click on *Set up a new device* and enter the following values:
+	* **Device type**: Raspberry Pi 2 & 3
+	* **OS Build**: Windows 10 IoT Core
+	* **Drive**: (select your SD card)
+	* **Device name**: (your favorite dessert or whatever)
+	* **Administrator password**: (enter a password (don't forget it))
+3. Accept the terms and press *Download and install*.
+4. When the installation is completed, insert the SD card into the Rasberry Pi.
+5. Use the Ethernet cable provided in your kit to connect the Raspberry Pi to your PC.
+6. Power up the Raspberry Pi using the USB board and wait for it to start.
+	If the Raspberry Pi is starting (check using the HDMI output), continue to the next step.
+	Else, unplug the power and plug it in again.
+7. Open the browser and navigate to *http://[YOURROBOTNAME]:8080*. Use administrator as username and the password used in step 2.
+8. (TODO) Debug pin
+9. (TODO) Access the Wi-Fi credentials
+
+When your robot is connected to a Wi-Fi network, try to deploy the test app and see what happens.
