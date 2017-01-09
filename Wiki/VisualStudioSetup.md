@@ -22,9 +22,12 @@ No errors should pop up.
 To setup the project  we will need to configure our target device in the project settings:
 
 1) Set the build target for the Background task from **Any target** to **ARM**.
+
 2) Open the **properties** screen of our created background task.
+
 3) Following screen will appear:
 ![Properties screen](imgs/PropertiesConfig.PNG)
+
 4) From this screen you can edit the app manifest, to allow features such as file system, internet, bluetooth,...
    
    * For that click on **Package Manifest**, followed by opening the tab Capabilities. Here select the feature you need.
