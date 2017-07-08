@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Net.Http;
-using System.Threading;
-using Windows.ApplicationModel.Background;
-using Windows.System.Threading;
-using GoPiGo;
+﻿using GoPiGo;
 using GoPiGo.Sensors;
+using System;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Background;
 
 // The Background Application template is documented at http://go.microsoft.com/fwlink/?LinkID=533884&clcid=0x409
 
@@ -25,13 +19,13 @@ namespace TestDriver
                 {
                     var led1 = factory.BuildLed(Pin.LedLeft);
                     var led2 = factory.BuildLed(Pin.LedRight);
-                    led1.ChangeState(GoPiGo.Sensors.SensorStatus.On);
+                    led1.ChangeState(SensorStatus.On);
                     await Task.Delay(20);
-                    led2.ChangeState(GoPiGo.Sensors.SensorStatus.On);
+                    led2.ChangeState(SensorStatus.On);
                     await Task.Delay(1500);
-                    led1.ChangeState(GoPiGo.Sensors.SensorStatus.Off);
+                    led1.ChangeState(SensorStatus.Off);
                     await Task.Delay(20); 
-                    led2.ChangeState(GoPiGo.Sensors.SensorStatus.Off);
+                    led2.ChangeState(SensorStatus.Off);
 
                     DateTime dtStart = DateTime.Now;
                     var ultrasonic = factory.BuildUltraSonicSensor(Pin.Analog1);
