@@ -15531,11 +15531,8 @@
     },
     "dependencies": {
       "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
-      "System.Numerics.Vectors": "4.1.0",
-      "NuGet.CommandLine": {
-        "target": "Package",
-        "version": "[4.1.0, )"
-      }
+      "NuGet.CommandLine": "4.1.0",
+      "System.Numerics.Vectors": "4.1.0"
     },
     "frameworks": {
       "uap10.0": {}
